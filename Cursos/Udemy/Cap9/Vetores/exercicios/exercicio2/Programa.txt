@@ -1,0 +1,33 @@
+//Algoritmo somaVetor
+
+    //declaração de variáveis
+    inteiro n, i
+    real vet[], soma, media
+
+    //leitura dos dados
+    escreva("Digite um inteiro: ")
+    leia(n)
+    escreva("Digite os valores: ")
+
+    //Armazenamento dos dados
+    Para i de 0 até n, faça:
+        Leia(vet[i])
+    FimPara
+
+    //Manipulaçao dos elementos do vetor
+    Para i de 0 até n, faça:
+        Mostre (vet[i])
+    FimPara
+
+    soma <= 0
+    Para i de 0 até n, faça:
+	soma += vet[i]
+    FimPara
+
+    Mostre soma
+
+    media <= soma/n	
+
+    Mostre a media
+
+//FimAlgoritmo
