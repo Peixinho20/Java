@@ -3,9 +3,10 @@ package entidades;
 public class Produto {
 
     //atributos da classe
-    public String nome;
+    public String nome, descricao;
     public double preco;
     public int quantidade;
+    public boolean disponivelParaVenda;
 
     //Construtor da classe que obriga ao programdor inserir dados dos produtos
 
