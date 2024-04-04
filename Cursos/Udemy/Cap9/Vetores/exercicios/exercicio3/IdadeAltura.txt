@@ -4,4 +4,10 @@ bem como os nomes dessas pessoas caso houver.
 
 //Algoritmo
 
+inteiro n
+real alturaMedia
+
+Para i de 1 até n, faça:
+
+
 
