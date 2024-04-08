@@ -3,10 +3,10 @@ package entidades;
 public class Produto {
 
     //atributos da classe
-    public String nome;
-    public String descricao;
-    public double preco;
-    public int quantidade;
+    private String nome;
+    private String descricao;
+    private double preco;
+    private int quantidade;
     public boolean disponivelParaVenda;
 
     public Produto(String nome, double preco){
