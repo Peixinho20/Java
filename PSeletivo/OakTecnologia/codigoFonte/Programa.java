@@ -1,42 +1,60 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 import entidades.Produto;
 
 public class Programa {
 	//Declaração de lista de produtos como uma varável de instancia
-    private static List<Produto> listaProdutos = new ArrayList<>();
+    private static ArrayList<Produto> listaProdutos = new ArrayList<>();
 
-    public static void main(String[] args){
-		//Locale.setDefault(Locale.BR);
+@SuppressWarnings("unchecked")
+	
+	public static void main(String [] args){
 		Scanner sc = new Scanner(System.in);
-	 	
-	 	boolean continuar = true;
-	 	
-	 	while(continuar) {	
-	 		exibirMenu();   
 		
+		//Desserialização 
+		ObjectInputStream ois = null;
+		
+		try{
+			ois = new ObjectInputStream(new FileInputStream("Programa.bin"));
+			listaProdutos = (ArrayList)ois.readObject();
+			System.out.println(listaProdutos);
+			ois.close();
+		
+		}catch (ClassNotFoundException e){
+			System.out.println("Arquivo não existe");
+		
+		}catch(IOException e1) {
+			System.out.println("Erro na Desserialização");
+		}
+		
+		//Início do programa
+		boolean continuar = true;
+		 	
+		while(continuar) {	
+			exibirMenu();   
+			
 			int opcao = sc.nextInt(); 
-			
+				
 			sc.nextLine();  //Consumo de quebra de linha pendente 
-			
+				
 			switch (opcao) {
 				case 1:
 					//listarProdutos();
 					cadastrarProdutos(sc);	
 					listarProdutos();
 					break;
-					
+						
 				case 2: //Apenas ver a lista de produtos cadastrados
 					listarProdutos();
 					break;
-					
+						
 				case 3:
 					System.out.println("Finalizando o programa... FIM!");
 					continuar = false;
 					break;
-					
+						
 				default: 
 					System.out.println("Valor inválido");
 					//inserir uma condição para tentar de novo
@@ -94,8 +112,6 @@ public class Programa {
 		System.out.println("Produto cadastrado com sucesso!");
 		
 		System.out.println("....................................");
-
-		//System.out.println("Produto recém cadastrados");
 					
 		System.out.println("Dados do Produto: " + produto);	        
 				
@@ -109,18 +125,36 @@ public class Programa {
     }
     
     private static void listarProdutos(){
+    	
+    	//Serialização
+    	ObjectOutputStream oos = null;
+		
+		try {		
+			oos = new ObjectOutputStream(new FileOutputStream("Programa.bin"));
+			oos.writeObject(listaProdutos);
+			oos.close();
+		}catch (IOException e){
+			System.out.println("Erro na Serialização");
+		}
+		
+    	//Função listarProdutos()
     	if(listaProdutos.isEmpty()){
-    		System.out.println("\nListagem vazia");    	
+    		System.out.println("\nListagem vazia\n");    	
     	}else{
     		System.out.println("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
     		System.out.println("                LISTAGEM:");
     		System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 			for(Produto p : listaProdutos){
-				System.out.println("Nome: "+ p.getNome() + " | Preço: " + p.getPreco());
-			}
-			//System.out.println("....................................");
+				System.out.println("Nome: "+ p.getNome() + " | Preço: " + p.getPreco()+"\n");
+			}	
     	}
     }
 }    
-    
-    
+   
+   
+   
+   
+
+
+
+

@@ -1,6 +1,9 @@
 package entidades;
 
-public class Produto {
+import java.io.Serializable;
+
+public class Produto implements Serializable{
+    private static final long serialVersionUID = 1L;
 
     //atributos da classe
     private String nome;
@@ -10,7 +13,7 @@ public class Produto {
     public boolean disponivelParaVenda;
 
     public Produto(String nome, double preco){
-    	//parametro da classe recebe o paremtro do médoto
+    	//atributo da classe recebe o paremtro do médoto
 		this.nome = nome;
 		this.preco = preco;
 	}
